@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Samuel Green",
+    "email": "samuelgreen@example.com",
+    "nation_id": "US458732",
+    "file_code": "GRN876",
+    "category_id": 1,
+    "promotion_date": "2025-01-08",
+    "register_date": "2025-01-08",
+    "gender": "Male",
+    "salary": 52000,
+    "level": "Senior",
+    "address": "1123 Oakwood Rd, Dallas, TX",
+    "id": 3
+  },
+  {
+    "name": "Sophia Turner",
+    "email": "sophiaturner@example.com",
+    "nation_id": "UK567891",
+    "file_code": "TRN123",
+    "category_id": 2,
+    "promotion_date": "2025-01-08",
+    "register_date": "2025-01-08",
+    "gender": "Female",
+    "salary": 48000,
+    "level": "Junior",
+    "address": "456 Maple St, London, UK",
+    "id": 4
+  },
+  {
+    "name": "Liam Johnson",
+    "email": "liamjohnson@example.com",
+    "nation_id": "CA123456",
+    "file_code": "JOH987",
+    "category_id": 3,
+    "promotion_date": "2025-01-08",
+    "register_date": "2025-01-08",
+    "gender": "Male",
+    "salary": 60000,
+    "level": "Lead",
+    "address": "789 Birch Ave, Toronto, Canada",
+    "id": 6
+  },
+  {
+    "name": "Ava Mitchell",
+    "email": "avamitchell@example.com",
+    "nation_id": "AU999321",
+    "file_code": "MIT556",
+    "category_id": 1,
+    "promotion_date": "2025-01-08",
+    "register_date": "2025-01-08",
+    "gender": "Female",
+    "salary": 52000,
+    "level": "Associate",
+    "address": "123 Sunshine Blvd, Melbourne, Australia",
+    "id": 7
+  },
+  {
+    "name": "Oliver Harris",
+    "email": "oliverharris@example.com",
+    "nation_id": "IN456789",
+    "file_code": "HAR123",
+    "category_id": 2,
+    "promotion_date": "2025-01-08",
+    "register_date": "2025-01-08",
+    "gender": "Male",
+    "salary": 43000,
+    "level": "Intern",
+    "address": "22 Green Park, Delhi, India",
+    "id": 8
+  }
+]

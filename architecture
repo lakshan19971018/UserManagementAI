@@ -1,0 +1,71 @@
+backend/
+│
+├── app/
+│   ├── api/                  
+│   │   ├── v1/                
+│   │   │   ├── endpoints/     
+│   │   │   │   ├── users.py          # User routes
+│   │   │   │   ├── categories.py     # Category routes
+│   │   │   │   ├── documents.py      # Document routes
+│   │   │   │   ├── admins.py         # Admin routes (new)
+│   │   │   ├── dependencies/         
+│   │   │   │   ├── auth.py           # Authentication dependencies (updated)
+│   │   │   │   ├── database.py       # DB session dependency
+│   │   │   │   └── validators.py     # Validation logic
+│   │   │   └── __init__.py
+│   │   └── __init__.py
+│   │
+│   ├── core/                         
+│   │   ├── config.py                 # Application configuration (environment variables)
+│   │   ├── security.py               # Security utilities (JWT tokens and role validation updated)
+|   |   |
+│   │   └── __init__.py
+│   │
+│   ├── db/                           
+│   │   ├── base.py                   # Base SQLAlchemy model
+│   │   ├── session.py                # Database session management
+│   │   ├── models/                  
+│   │   │   ├── user.py               # User model
+│   │   │   ├── category.py           # Category model
+│   │   │   ├── document.py           # Document model
+│   │   │   └── admin.py              # Admin model (new)
+│   │   ├── schemas/                 
+│   │   │   ├── user.py               # User schemas
+│   │   │   ├── category.py           # Category schemas
+│   │   │   ├── document.py           # Document schemas
+│   │   │   └── admin.py              # Admin schemas (new)
+│   │   └── __init__.py
+│   │
+│   ├── services/                     
+│   │   ├── user_service.py           # User-related logic
+│   │   ├── category_service.py       # Category-related logic
+│   │   ├── document_service.py       # Document-related logic
+│   │   ├── admin_service.py          # Admin-related logic (new)
+│   │   └── __init__.py
+│   │
+│   ├── utils/                        
+│   │   ├── logger.py                 # Logging utilities
+│   │   ├── file_utils.py             # File handling functions
+│   │   ├── date_utils.py             # Date utilities
+│   │   └── __init__.py
+│   │
+│   ├── main.py                       # FastAPI app entry point
+│   └── __init__.py
+│
+├── tests/                            
+│   ├── test_users.py                 # Test cases for user routes
+│   ├── test_categories.py            # Test cases for category routes
+│   ├── test_documents.py             # Test cases for document routes
+│   ├── test_admins.py                # Test cases for admin routes (new)
+│   └── __init__.py
+│
+├── migrations/                       
+│   ├── env.py                        # Alembic configuration
+│   ├── script.py.mako                # Template for migration scripts
+│   └── versions/                     # Auto-generated migration files (updated with admin table)
+│
+├── requirements.txt                  # Python dependencies
+├── .env                              # Environment variables
+├── .gitignore                        # Files and directories to ignore in Git
+├── README.md                         # Project documentation
+└── pyproject.toml                    # Python project metadata (optional)
