@@ -45,6 +45,15 @@ def get_all_users(db: Session):
 def get_user_by_nation_id(db: Session, nation_id: str):
     return db.query(User).filter(User.nation_id == nation_id).first()
 
+def get_user_by_id(db:Session,user_id:int):
+    return db.query(User).filter(User.id == user_id).first()
+
+def get_user_by_file_code(db:Session,file_code:int):
+    return db.query(User).filter(User.file_code==file_code).first()
+
+def get_user_by_serial_number(db:Session,Serial_number:int):
+    return db.query(User).filter(User.Serial_number==Serial_number).first()
+
 def get_user_by_name(db: Session, name: str):
     return db.query(User).filter(User.name == name).first()
 

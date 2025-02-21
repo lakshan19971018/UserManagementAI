@@ -2,7 +2,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from app.db.schemas.user import UserCreate, UserResponse
-from app.services.user_service import create_user, get_all_users,get_user_by_nation_id,update_user,delete_user,get_users_by_category_id,get_user_by_gender,get_user_by_name
+from app.services.user_service import create_user,get_user_by_file_code,get_user_by_serial_number, get_all_users,get_user_by_nation_id,update_user,delete_user,get_users_by_category_id,get_user_by_id,get_user_by_gender,get_user_by_name
 from app.db.session import get_db
 from typing import List
 
@@ -42,6 +42,40 @@ async def fetch_user_by_nation_id(nation_id: str, db: Session = Depends(get_db))
         return user
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+    
+@router.get("/user_id/{user_id}")
+async def fetch_user_by_id(user_id:int,db:Session=Depends(get_db)):
+    try:
+        user = get_user_by_id(db=db, user_id=user_id)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        return user
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/file_code/{file_code}")    
+async def fetch_user_by_file_code (file_code:int ,db:Session=Depends(get_db)):
+    try:
+        user = get_user_by_file_code(db=db,file_code=file_code)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        return user
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/Serial_number/{Serial_number}")    
+async def fetch_user_by_serial_number (Serial_number:int ,db:Session=Depends(get_db)):
+    try:
+        user = get_user_by_serial_number(db=db,Serial_number=Serial_number)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        return user
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
     
 @router.get("/name/{name}", response_model=UserResponse)
 async def fetch_user_by_name(name: str, db: Session = Depends(get_db)):
