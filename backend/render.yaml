@@ -8,6 +8,8 @@ services:
     #alembic upgrade head  # Run database migrations
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
     envVars:
+      - key: PORT
+        value: 8000
       - key: DB_USERNAME
         value: sql12763886
       - key: DB_PASSWORD
@@ -20,5 +22,4 @@ services:
         value: mysql://sql12763886:mDb37338sy@sql12.freesqldatabase.com/sql12763886
       - key: GORQ_API
         value: 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
-      - key: PORT
-        value: 3306
+
