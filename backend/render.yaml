@@ -21,3 +21,5 @@ services:
         value: mysql://sql12763886:mDb37338sy@sql12.freesqldatabase.com/sql12763886
       - key: GORQ_API
         value: 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
+      - key: PORT
+        value: 3306
