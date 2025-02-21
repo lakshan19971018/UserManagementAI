@@ -4,9 +4,8 @@ services:
     runtime: python
     repo: lakshan19971018/UserManagementAI
     branch: main
-    buildCommand: |
-      pip install -r requirements.txt
-      alembic upgrade head  # Run database migrations
+    buildCommand: pip install -r requirements.txt
+    #alembic upgrade head  # Run database migrations
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
     envVars:
       - key: DB_USERNAME
