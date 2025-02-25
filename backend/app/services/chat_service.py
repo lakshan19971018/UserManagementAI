@@ -37,16 +37,35 @@ def load_database():
 #     except Exception as e:
 #         return f"Error: {str(e)}"
 
-def querring(df, question: str) -> str:
+# def querring(df, question: str) -> str:
+#     try:
+#         llm = ChatGroq(
+#             groq_api_key=GROQ_API, model_name="llama3-70b-8192", temperature=0.7
+#         )
+#         pandas_ai = SmartDataframe(df, config={"llm": llm})
+#         result = pandas_ai.chat(question)
+#         print(result)
+#         return result
+#     except Exception as e:
+#         return f"Error: {str(e)}"
+
+def querring(df, question: str):
     try:
         llm = ChatGroq(
             groq_api_key=GROQ_API, model_name="llama3-70b-8192", temperature=0.7
         )
         pandas_ai = SmartDataframe(df, config={"llm": llm})
         result = pandas_ai.chat(question)
-        return result
+
+        # Check if the result is a DataFrame or a string
+        if isinstance(result, pd.DataFrame):
+            return {"type": "dataframe", "value": result.to_dict(orient="records")}  # Convert DataFrame to JSON
+
+        return {"type": "string", "value": str(result)}  # Return a normal string
+
     except Exception as e:
-        return f"Error: {str(e)}"
+        return {"type": "error", "value": str(e)}
+
 
 
 def asking_question(question:str):
