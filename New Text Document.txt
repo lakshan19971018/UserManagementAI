@@ -1,0 +1,21 @@
+give me details of users who have Promotion Date I
+
+give me details of male users who have Promotion Date I
+
+give me details of female users 
+
+give me details of  Male users
+
+give me details of users who have register before 2020.2.10
+
+give me details of users who have transfer from Kaluthara
+
+Give me details of users who are in Transor category
+
+Give me details of users who are in Present category
+
+Give me details of users who are in VOP category
+
+Give me Name , W-OP of users 
+
+
