@@ -10,16 +10,8 @@ services:
     envVars:
       - key: PORT
         value: 8000
-      - key: DB_USERNAME
-        value: sql12763886
-      - key: DB_PASSWORD
-        value: mDb37338sy
-      - key: DB_HOST
-        value: sql12.freesqldatabase.com
-      - key: DB_DATABASE
-        value: sql12763886
       - key: DATABASE_URL
-        value: mysql://sql12763886:mDb37338sy@sql12.freesqldatabase.com/sql12763886
+        value: mongodb+srv://lakshan200:ABCDEf45@cluster0.ijlzf.mongodb.net/users?retryWrites=true&w=majority
       - key: GORQ_API
         value: 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
 
