@@ -1,11 +1,14 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.sql import func
-from app.db.base import Base
+from pydantic import BaseModel
+from typing import Optional
+from bson import ObjectId
+from datetime import datetime
 
-class Admin(Base):
-    __tablename__ = "admins"
+class Admin(BaseModel):
+    id: Optional[str] = None
+    email: str
+    hashed_password: str
+    created_at: Optional[datetime] = None  # MongoDB වල manually set කරන්න
 
-    id = Column(Integer,primary_key=True,index=True)
-    email  = Column(String(255), unique=True, index=True, nullable=False)
-    hashed_password = Column(String(255), nullable=False)
-    #created_at = Column(DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}

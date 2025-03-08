@@ -1,12 +1,16 @@
 from pydantic import BaseModel
+from typing import Optional
+from bson import ObjectId
+import json
 
 class AskQuestion(BaseModel):
     question: str
 
-    class Config:
-        from_attributes = True
-
 class QuestionResponse(BaseModel):
-    
+    id: Optional[str] = None
     question: str
-    content: str  # Add this to include the assistant's response
+    content: str
+
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}

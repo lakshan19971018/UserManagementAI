@@ -1,18 +1,16 @@
-from app.db.models.admin import Admin
 from app.core.security import hash_password
-from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
+from bson import ObjectId
 
-def create_admin(db: Session, email: str, password: str):
+async def create_admin(db, email: str, password: str):
     try:
         hashed_password = hash_password(password)
-        new_admin = Admin(
-            email=email,
-            hashed_password=hashed_password,
-        )
-        db.add(new_admin)
-        db.commit()
-        db.refresh(new_admin)
+        new_admin = {
+            "email": email,
+            "hashed_password": hashed_password
+        }
+        result = await db["admins"].insert_one(new_admin)
+        new_admin["_id"] = str(result.inserted_id)  # Convert ObjectId to string
         return new_admin
     except Exception as e:
         raise HTTPException(

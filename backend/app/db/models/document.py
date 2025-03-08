@@ -1,12 +1,12 @@
-from sqlalchemy import String, Integer, ForeignKey
-from sqlalchemy.orm import relationship
-from app.db.session import Base
-from sqlalchemy import Column
+from pydantic import BaseModel
+from typing import Optional
+from bson import ObjectId
 
-class Document(Base):
-    __tablename__ = "documents"
+class Document(BaseModel):
+    id: Optional[str] = None
+    file_path: str
+    file_code: Optional[str] = None  # User reference එක string (ObjectId) විදිහට
 
-    id = Column(Integer,primary_key=True,index =True)
-    file_path = Column(String(255), unique=True, index=True)
-    file_code = Column(Integer,ForeignKey("users.id"))
-    documents = relationship("Document", back_populates="user")
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {ObjectId: str}

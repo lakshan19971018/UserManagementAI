@@ -1,21 +1,17 @@
-import os
+from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
-from pathlib import Path
 
 load_dotenv()
 
-# Database Configuration
-
-DB_USERNAME = os.getenv("DB_USERNAME")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_HOST = os.getenv("DB_HOST")
-DB_DATABASE = os.getenv("DB_DATABASE")
-GORQ_API  = os.getenv("GORQ_API")
-DATABASE_URL = f"mysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/{DB_DATABASE}"
-
-class Settings:
-    SECRET_KEY: str = "your-secret-key"  # Replace with a strong secret key
+class Settings(BaseSettings):
+    DATABASE_URL: str
+    GORQ_API: str
+    SECRET_KEY: str = "your-secret-key-here"  # Replace with a secure key
     ALGORITHM: str = "HS256"
     JWT_EXPIRATION: int = 60  # Token validity in minutes
+
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
 
 settings = Settings()

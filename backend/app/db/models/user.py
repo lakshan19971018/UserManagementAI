@@ -1,26 +1,34 @@
-# models/user.py
-from sqlalchemy import String, Integer, Date, ForeignKey, Column
-from sqlalchemy.orm import relationship
-from app.db.session import Base
+from pydantic import BaseModel, validator
+from typing import Optional
+from datetime import date
 
-class User(Base):
-    __tablename__ = 'users'
+CATEGORY_MAP = {"Present": "1", "Leave": "2", "Transor": "3", "VOP": "4"}
+VALID_CATEGORY_IDS = set(CATEGORY_MAP.values())  # {"1", "2", "3", "4"}
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(255), index=True)
-    email = Column(String(255), unique=True, index=True)
-    nation_id = Column(String(255), unique=True, index=True)
-    file_code = Column(String(255), unique=True, index=True)
-    register_date = Column(Date)
-    promotion_date_III = Column(Date)
-    promotion_date_II = Column(Date)
-    promotion_date_I = Column(Date)
-    gender = Column(String(10),nullable=True)
-    date_of_birth = Column(Date)
-    address = Column(String(255), nullable=True)
-    Serial_number  =Column(Integer, index=True,unique=True,) 
-    W_OP = Column(String(255),index=True)
-    place_of_transer = Column(String(255), index=True)
-    date_of_transer =  Column(Date)
-    category_id = Column(Integer, ForeignKey("categories.id"))
-    category = relationship("Category", back_populates="users", lazy="joined")
+class User(BaseModel):
+    id: Optional[str] = None
+    name: str
+    email: str
+    nation_id: str
+    file_code: str
+    register_date: date
+    promotion_date_III: Optional[date] = None
+    promotion_date_II: Optional[date] = None
+    promotion_date_I: Optional[date] = None
+    gender: Optional[str] = None
+    date_of_birth: date
+    address: Optional[str] = None
+    serial_number: int
+    w_op: Optional[str] = None
+    place_of_transfer: Optional[str] = None
+    date_of_transfer: Optional[date] = None
+    category_id: Optional[str] = None  # "1", "2", "3", "4" විතරක් allowed
+
+    @validator("category_id")
+    def validate_category_id(cls, v):
+        if v is not None and v not in VALID_CATEGORY_IDS:
+            raise ValueError("category_id must be one of '1', '2', '3', '4'")
+        return v
+
+    class Config:
+        arbitrary_types_allowed = True
